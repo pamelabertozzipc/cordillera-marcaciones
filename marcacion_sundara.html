@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Marcación Sundara</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+  <p>Obteniendo tu ubicación, por favor espera…</p>
+
+  <script>
+    (function () {
+      // 🔹 CONFIGURACIÓN
+      var proyecto = "Sundara"; // CAMBIAR según el proyecto
+      var formBase = "https://docs.google.com/forms/d/e/1FAIpQLSdK8tgZDYysmPYxETFniafsi7tbA4g60E1b1kDyioqEBA9Jiw/viewform?usp=pp_url";
+
+      var entryProyecto = "1607844803"; // ID de la pregunta "Proyecto"
+      var entryLat = "1893463213";   // ⇦ REEMPLAZAR por el ID real (solo el número)
+      var entryLng = "1135262585";  // ⇦ REEMPLAZAR por el ID real
+
+      function redirigir(lat, lng) {
+        var url =
+          formBase +
+          "&entry." + entryProyecto + "=" + encodeURIComponent(proyecto) +
+          "&entry." + entryLat + "=" + encodeURIComponent(lat) +
+          "&entry." + entryLng + "=" + encodeURIComponent(lng);
+
+        window.location.replace(url);
+      }
+
+      if (!navigator.geolocation) {
+        alert("No pudimos obtener tu ubicación. Activa el GPS y vuelve a escanear el código.");
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        function (pos) {
+          var lat = pos.coords.latitude.toFixed(6);
+          var lng = pos.coords.longitude.toFixed(6);
+          redirigir(lat, lng);
+        },
+        function (err) {
+          alert("No pudimos obtener tu ubicación. Revisa permisos de ubicación y vuelve a intentar.");
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 0
+        }
+      );
+    })();
+  </script>
+</body>
+</html>
