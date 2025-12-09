@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Marcación Altro</title>
+  <title>Marcación PROYECTO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
@@ -11,12 +11,13 @@
   <script>
     (function () {
       // 🔹 CONFIGURACIÓN
-      var proyecto = "Altro"; // CAMBIAR según el proyecto
+      var proyecto = "Altro"; // Sundara / Altamira / Altro / Uruka Point
       var formBase = "https://docs.google.com/forms/d/e/1FAIpQLSdK8tgZDYysmPYxETFniafsi7tbA4g60E1b1kDyioqEBA9Jiw/viewform?usp=pp_url";
 
-      var entryProyecto = "1607844803"; // ID de la pregunta "Proyecto"
-      var entryLat = "1893463213";   // ⇦ REEMPLAZAR por el ID real (solo el número)
-      var entryLng = "1135262585";  // ⇦ REEMPLAZAR por el ID real
+      // IDs de preguntas del formulario
+      var entryProyecto = "1607844803";   // Proyecto
+      var entryLat      = "1893463213";   // Latitud
+      var entryLng      = "1135262585";   // Longitud
 
       function redirigir(lat, lng) {
         var url =
@@ -39,7 +40,7 @@
           var lng = pos.coords.longitude.toFixed(6);
           redirigir(lat, lng);
         },
-        function (err) {
+        function () {
           alert("No pudimos obtener tu ubicación. Revisa permisos de ubicación y vuelve a intentar.");
         },
         {
@@ -52,3 +53,4 @@
   </script>
 </body>
 </html>
+
